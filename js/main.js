@@ -163,13 +163,14 @@
       .from(".hero__title .ln > span", { yPercent: 110, duration: 1.3, stagger: 0.1 }, 0.1)
       .from(".hero .h-in", { opacity: 0, y: 28, duration: 1.1, stagger: 0.08 }, 0.2)
       .from(".tile", { opacity: 0, y: 30, duration: 1, stagger: 0.07, clearProps: "transform,translate" }, 0.55)
-      // portrait: curtain reveal, image settles, ring + chips arrive
-      .fromTo("#portraitFrame", { clipPath: "inset(100% 0% 0% 0% round 32px)" }, { clipPath: "inset(0% 0% 0% 0% round 32px)", duration: 1.5, ease: "expo.inOut" }, 0.1)
-      .from("#portraitFrame img, .portrait__mono", { scale: 1.35, duration: 1.8 }, 0.35)
-      .from(".portrait__ring", { scale: 0.7, opacity: 0, duration: 1.6 }, 0.6)
-      .from(".portrait__glow", { opacity: 0, duration: 1.6 }, 0.6)
-      .from(".portrait__chip", { opacity: 0, scale: 0.7, y: 20, duration: 0.9, stagger: 0.12, ease: "back.out(1.7)" }, 1.1)
-      .fromTo(".portrait__shine", { xPercent: -120 }, { xPercent: 120, duration: 1.4, ease: "power2.inOut", repeat: -1, repeatDelay: 5 }, 1.4);
+      // portrait: disc and rings open up, the illustration rises in, then the product layer arrives
+      .from(".portrait__glow, .portrait__grid", { opacity: 0, duration: 1.6 }, 0.1)
+      .from(".portrait__disc", { scale: 0.4, opacity: 0, duration: 1.4 }, 0.15)
+      .from(".portrait__ring", { scale: 0.7, opacity: 0, duration: 1.6, stagger: 0.12 }, 0.3)
+      .from("#portraitCut", { yPercent: 14, opacity: 0, duration: 1.5 }, 0.35)
+      .from(".flow__path", { opacity: 0, duration: 1.2, stagger: 0.15 }, 0.8)
+      .from(".orbit span", { scale: 0, opacity: 0, duration: 0.8, stagger: 0.08, ease: "back.out(2)", clearProps: "transform" }, 0.9)
+      .from(".portrait__chip, .wdg", { opacity: 0, scale: 0.7, y: 20, duration: 0.9, stagger: 0.1, ease: "back.out(1.7)", clearProps: "transform" }, 1.1);
     heroCounters.forEach((el) => {
       const o = { v: 0 };
       tl.to(o, { v: Number(el.dataset.count), duration: 2, ease: "power3.out", onUpdate: () => fmt(el, o.v) }, 0.6);
