@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vedaant Chopra — Product & Strategy</title>
+  <meta name="description" content="Vedaant Chopra — aspiring Product Manager. CS & AI at Newton School of Technology. Product teardowns, user research and 0→1 product building." />
+  <meta name="theme-color" content="#050505" />
+  <script>
+    try { var t = localStorage.getItem("theme"); } catch (e) {}
+    document.documentElement.dataset.theme = t || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=6" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050505'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='700' font-size='28' fill='%23fff'%3EV%3Ctspan fill='%23e0523f'%3EC%3C/tspan%3E%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <!-- background layers -->
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <canvas id="ghost" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- preloader -->
+  <div class="loader" id="loader">
+    <div class="loader__count"><span id="loaderNum">0</span>%</div>
+    <div class="loader__bar"><span id="loaderBar"></span></div>
+  </div>
+
+  <!-- nav -->
+  <header class="nav">
+    <a href="#top" class="logo" data-magnetic>V<span>C</span><i>.</i></a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#work" data-section="work">Work</a>
+      <a href="#teardowns" data-section="teardowns">Teardowns</a>
+      <a href="#toolkit" data-section="toolkit">Toolkit</a>
+      <a href="#journey" data-section="journey">Journey</a>
+      <a href="#contact" data-section="contact">Contact</a>
+    </nav>
+    <div class="nav__right">
+      <button class="theme" id="themeBtn" aria-label="Switch colour theme" title="Switch theme">
+        <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <a href="assets/Vedaant_Chopra_Resume.pdf" target="_blank" rel="noopener" class="nav__cta" data-magnetic>Resume ↗</a>
+      <button class="dive" id="menuBtn" aria-expanded="false" aria-controls="menu" data-magnetic>
+        <span class="dive__label">Dive In</span>
+        <span class="dive__icon"><i></i><i></i></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- full-screen menu -->
+  <nav class="menu" id="menu" aria-hidden="true">
+    <ul class="menu__links">
+      <li><a href="#work"><span>Work</span><sup>01</sup></a></li>
+      <li><a href="#teardowns"><span>Teardowns</span><sup>02</sup></a></li>
+      <li><a href="#toolkit"><span>Toolkit</span><sup>03</sup></a></li>
+      <li><a href="#journey"><span>Journey</span><sup>04</sup></a></li>
+      <li><a href="#contact"><span>Contact</span><sup>05</sup></a></li>
+    </ul>
+    <div class="menu__foot">
+      <p class="eyebrow">Socials</p>
+      <div class="menu__socials">
+        <a href="https://www.linkedin.com/in/vedaant-chopra-217815272" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:vedaantchopra01@gmail.com">Email</a>
+        <a href="https://wa.me/918178254059" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="assets/Vedaant_Chopra_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <div class="hero__status h-in">
+            <span class="pill pill--green"><i></i>Open to PM internships</span>
+            <span class="pill">📍 Delhi NCR</span>
+          </div>
+          <p class="hero__hi h-in">Hi, I'm <b>Vedaant Chopra</b> —</p>
+          <h1 class="hero__title">
+            <span class="ln"><span>Product thinker.</span></span>
+            <span class="ln"><span><em>Builder.</em></span></span>
+          </h1>
+          <p class="hero__lead h-in">
+            CS + AI undergrad at <b>Newton School of Technology</b> and Associate Consultant at <b>Arthakram</b>.
+            I've shipped <b>2 live products</b>, run <b>15+ product teardowns</b> and validated a marketplace with <b>₹10,000 in Day-1 sales</b>.
+          </p>
+          <div class="hero__ctas h-in">
+            <a href="#work" class="btn btn--ember" data-magnetic><span class="btn__arrow">↗</span> See the work</a>
+            <a href="assets/Vedaant_Chopra_Resume.pdf" class="btn btn--ghost" target="_blank" rel="noopener" data-magnetic>↓ Download resume</a>
+          </div>
+          <div class="tiles">
+            <div class="tile"><b data-count="15" data-suffix="+">15+</b><span>product teardowns at Arthakram</span></div>
+            <div class="tile"><b data-count="2">2</b><span>live products shipped</span></div>
+            <div class="tile"><b data-count="10000" data-prefix="₹">₹10,000</b><span>Day-1 sales validating Thrifto</span></div>
+            <div class="tile"><b data-count="350" data-suffix="+">350+</b><span>delegates across 3 MUNs I ran</span></div>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <div class="portrait" id="portrait">
+            <div class="portrait__glow"></div>
+            <div class="portrait__ring"></div>
+            <div class="portrait__frame" id="portraitFrame">
+              <img src="assets/img/vedaant.jpg" alt="Vedaant Chopra" width="960" height="1280" fetchpriority="high" onerror="this.remove()" />
+              <div class="portrait__mono">V<span>C</span></div>
+              <div class="portrait__shine"></div>
+            </div>
+            <div class="portrait__chip portrait__chip--a"><i>🎓</i><div><small>Studying</small><b>Newton School · CS + AI</b></div></div>
+            <div class="portrait__chip portrait__chip--b"><i>◆</i><div><small>Associate Consultant</small><b>Arthakram</b></div></div>
+            <div class="portrait__chip portrait__chip--c"><i>⚡</i><div><small>Shipped</small><b>WynIt · Product Guys</b></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proof h-in">
+        <span class="proof__label">Live now</span>
+        <div class="proof__items">
+          <a href="https://www.wynit.tech/dashboard" target="_blank" rel="noopener">WynIt</a>
+          <a href="https://productguys.arthakram.in/" target="_blank" rel="noopener">The Product Guys</a>
+        </div>
+        <span class="proof__sep"></span>
+        <span class="proof__label">Learned at</span>
+        <div class="proof__items"><span>BCG</span><span>IIT Guwahati</span><span>IIT Delhi</span><span>BITS Pilani</span></div>
+      </div>
+    </section>
+
+    <!-- SHORT VERSION -->
+    <section class="brief-sec" id="about">
+      <div class="section-head left">
+        <p class="eyebrow ember">The short version</p>
+      </div>
+      <div class="brief__grid">
+        <div class="brief">
+          <small>Profile</small>
+          <h3>Users first, frameworks second, shipping always.</h3>
+          <p>I work where users, business and tech meet: talk to users, structure the problem, then ship the smallest thing that proves it — and measure it.</p>
+        </div>
+        <div class="brief">
+          <small>Education</small>
+          <h3>Newton School of Technology</h3>
+          <p>B.Tech, Computer Science &amp; AI</p>
+          <p class="brief__meta">2025 — 2029 · Sonipat</p>
+        </div>
+        <div class="brief">
+          <small>Operating mode</small>
+          <ul>
+            <li>Customer discovery &amp; user research</li>
+            <li>User flows &amp; feature prioritisation</li>
+            <li>Issue trees, TAM/SAM/SOM, JTBD</li>
+            <li>Validate before building</li>
+          </ul>
+        </div>
+        <div class="brief">
+          <small>Leadership</small>
+          <h3>Associate Consultant, Arthakram</h3>
+          <p>15+ product teardowns · built The Product Guys for the club</p>
+          <p class="brief__meta">Prev: IT President &amp; MUN Organiser, DPS Ghaziabad</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section class="philo" id="philo">
+      <div class="philo__grid">
+        <div class="philo__copy">
+          <p class="eyebrow ember">The philosophy</p>
+          <p class="philo__text" id="philoText">Great products live in the gap between <span class="hl">what users say</span> and <span class="hl">what they actually do.</span> I close that gap with research, structure it with frameworks, and ship it with focus.</p>
+          <div class="principles">
+            <div><span>01</span><b>Talk to users</b><p>Problems before features.</p></div>
+            <div><span>02</span><b>Structure it</b><p>Frameworks turn noise into decisions.</p></div>
+            <div><span>03</span><b>Ship &amp; measure</b><p>Small bets, real numbers.</p></div>
+          </div>
+        </div>
+        <div class="philo__screen">
+          <canvas id="bridge" aria-hidden="true"></canvas>
+          <div class="philo__labels"><span class="philo__tag">User</span><span class="philo__tag">Product</span></div>
+          <p class="philo__caption">Closing the gap</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="work" id="work">
+      <div class="section-head">
+        <h2 class="big-title split">Selected Work</h2>
+        <p class="eyebrow center">From user research to marketplaces — built with empathy, evidence and focus.</p>
+      </div>
+
+      <!-- WynIt -->
+      <article class="card card--linked" data-tilt>
+        <a class="card__link" href="https://www.wynit.tech/dashboard" target="_blank" rel="noopener" aria-label="Open WynIt live site"></a>
+        <div class="card__visual">
+          <div class="browser browser--wide">
+            <div class="browser__bar"><i></i><i></i><i></i><span>wynit.tech/dashboard</span></div>
+            <img class="browser__shot" src="assets/img/wynit-dashboard.jpg" alt="WynIt dashboard showing competitions to prep for, your record and logged competitions" width="1400" height="911" loading="lazy" />
+          </div>
+        </div>
+        <div class="card__body">
+          <div class="card__meta"><span class="chips"><span class="chip chip--live">● 0→1 Product</span><span class="chip chip--visit">Live site ↗</span></span><span class="mono">01 / 05</span></div>
+          <h3>WynIt</h3>
+          <p class="card__sub">Competition discovery &amp; preparation platform · 700+ tracked</p>
+          <p>Found discovery and prep gaps through user research, then designed end-to-end flows, prioritised features and built the preparation and team-formation modules. Owned the lifecycle from problem definition to implementation — with a focus on activation &amp; retention.</p>
+          <div class="tags"><span>User Research</span><span>User Flows</span><span>Prioritisation</span><span>Activation</span></div>
+        </div>
+      </article>
+
+      <!-- Product Guys -->
+      <article class="card card--flip card--linked" data-tilt>
+        <a class="card__link" href="https://productguys.arthakram.in/" target="_blank" rel="noopener" aria-label="Open The Product Guys live site"></a>
+        <div class="card__visual">
+          <div class="browser browser--wide">
+            <div class="browser__bar"><i></i><i></i><i></i><span>productguys.arthakram.in</span></div>
+            <img class="browser__shot" src="assets/img/productguys-home.jpg" alt="The Product Guys home page: 5 minutes of product, every day" width="1400" height="600" loading="lazy" />
+          </div>
+          <div class="float-badge float-badge--l"><b>5 min</b><span>of product, daily</span></div>
+        </div>
+        <div class="card__body">
+          <div class="card__meta"><span class="chips"><span class="chip chip--live">● Built for Arthakram</span><span class="chip chip--visit">Live site ↗</span></span><span class="mono">02 / 05</span></div>
+          <h3>The Product Guys</h3>
+          <p class="card__sub">Daily PM learning &amp; teardown platform</p>
+          <p>Built for my club so students can learn how product managers think — a 5-minute lesson every day, real product teardowns every week, and a library sorted by skill. Students build streaks and compete with batchmates in live PM duels with a rated leaderboard.</p>
+          <div class="tags"><span>Daily Teardowns</span><span>PM Duels</span><span>Leaderboard</span><span>Streaks</span></div>
+        </div>
+      </article>
+
+      <!-- Thrifto -->
+      <article class="card" data-tilt>
+        <div class="card__visual">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <div class="phone__screen thr">
+              <div class="thr__head"><b>thrifto</b><span>🛍 3</span></div>
+              <div class="thr__grid">
+                <div class="thr__item" style="--c:#c9a27a"><span>Denim jacket</span><b>₹450</b></div>
+                <div class="thr__item" style="--c:#6f8a7a"><span>Vintage tee</span><b>₹180</b></div>
+                <div class="thr__item" style="--c:#8b6f9e"><span>Cargo pants</span><b>₹320</b></div>
+                <div class="thr__item" style="--c:#b56a5a"><span>Knit sweater</span><b>₹390</b></div>
+              </div>
+              <div class="thr__cta">List an item +</div>
+            </div>
+          </div>
+          <div class="float-badge"><b>₹10,000</b><span>Day-1 sales</span></div>
+        </div>
+        <div class="card__body">
+          <div class="card__meta"><span class="chip chip--live">● Validated IRL</span><span class="mono">03 / 05</span></div>
+          <h3>Thrifto</h3>
+          <p class="card__sub">Thrift marketplace for college &amp; Gen-Z students</p>
+          <p>Validated the marketplace with a real, physical stall before writing a line of code — managing inventory, seller onboarding and the buyer experience end to end, and generating ₹10,000 in sales on Day 1.</p>
+          <div class="tags"><span>Validation</span><span>Marketplace</span><span>Seller Onboarding</span><span>GTM</span></div>
+        </div>
+      </article>
+
+      <!-- Vyapar -->
+      <article class="card card--flip" data-tilt>
+        <div class="card__visual">
+          <div class="browser">
+            <div class="browser__bar"><i></i><i></i><i></i><span>vyapar · demand map</span></div>
+            <div class="browser__body vya">
+              <svg class="vya__map" viewBox="0 0 400 240" aria-hidden="true">
+                <defs>
+                  <radialGradient id="heat"><stop offset="0" stop-color="#e0523f" stop-opacity=".9"/><stop offset="1" stop-color="#e0523f" stop-opacity="0"/></radialGradient>
+                  <pattern id="gridp" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="rgba(255,255,255,.05)"/></pattern>
+                </defs>
+                <rect width="400" height="240" fill="url(#gridp)"/>
+                <path d="M0 150 C80 120 120 180 200 140 S320 90 400 120" stroke="rgba(255,255,255,.12)" stroke-width="6" fill="none"/>
+                <path d="M150 0 C160 80 120 160 170 240" stroke="rgba(255,255,255,.08)" stroke-width="4" fill="none"/>
+                <circle class="heat" cx="110" cy="90" r="46" fill="url(#heat)"/>
+                <circle class="heat" cx="270" cy="150" r="60" fill="url(#heat)" style="animation-delay:-1s"/>
+                <circle class="heat" cx="320" cy="60" r="30" fill="url(#heat)" style="animation-delay:-2s"/>
+                <g class="pins">
+                  <circle cx="110" cy="90" r="4"/><circle cx="270" cy="150" r="4"/><circle cx="320" cy="60" r="4"/>
+                </g>
+              </svg>
+              <div class="vya__panel">
+                <small>Demand gap · 2km</small>
+                <b>Organic staples</b>
+                <div class="vya__row"><span>Price band</span><em>₹120–₹260</em></div>
+                <div class="vya__row"><span>Sellers nearby</span><em>2</em></div>
+                <div class="vya__btn">Start listing →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card__body">
+          <div class="card__meta"><span class="chip">● Product Concept</span><span class="mono">04 / 05</span></div>
+          <h3>Vyapar</h3>
+          <p class="card__sub">ONDC market-maker &amp; seller onboarding engine</p>
+          <p>A concept helping MSMEs spot hyperlocal demand gaps using ONDC open data and Beckn — targeting ONDC seller network participants. Mapped a location-based journey that surfaces demand signals, price ranges and listing requirements to cut onboarding friction.</p>
+          <div class="tags"><span>ONDC</span><span>Beckn</span><span>Journey Mapping</span><span>MSMEs</span></div>
+        </div>
+      </article>
+
+      <!-- Arthakram -->
+      <article class="card" data-tilt>
+        <div class="card__visual">
+          <div class="board">
+            <div class="board__col"><small>Teardowns</small><span style="--b:#8a3ffc">Zepto</span><span style="--b:#f8cb46;--t:#111">Blinkit</span><span style="--b:#e8e8e8;--t:#111">Urban Company</span><span style="--b:#e0523f">Toing</span><span style="--b:transparent;--t:var(--muted)" class="board__more">+ 11 more</span></div>
+            <div class="board__col"><small>Frameworks</small>
+              <svg viewBox="0 0 140 110" class="board__tam" aria-hidden="true">
+                <circle cx="70" cy="58" r="50"/><circle cx="70" cy="70" r="34"/><circle cx="70" cy="82" r="18"/>
+                <text x="70" y="22">TAM</text><text x="70" y="50">SAM</text><text x="70" y="86">SOM</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="card__body">
+          <div class="card__meta"><span class="chip chip--live">● Feb 2026 — Present</span><span class="mono">05 / 05</span></div>
+          <h3>Arthakram</h3>
+          <p class="card__sub">Associate Consultant · Product &amp; Consulting Club</p>
+          <p>Led 15+ product teardowns — including Toing, Urban Company, Zepto and Blinkit. Ran market research and competitor benchmarking, and applied issue trees, TAM/SAM/SOM and segmentation to growth strategy and product evaluation.</p>
+          <div class="tags"><span>Teardowns</span><span>Benchmarking</span><span>Issue Trees</span><span>Growth</span></div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ON STAGE -->
+    <section class="stage">
+      <figure class="stage__fig">
+        <div class="stage__img"><img src="assets/img/productguys-launch.jpg" alt="Team Arthakram on stage at Rishihood University launching LXOS and The Product Guys" width="1600" height="900" loading="lazy" /></div>
+        <figcaption class="stage__cap">
+          <span class="eyebrow ember">On stage</span>
+          <b>Launching The Product Guys with Team Arthakram</b>
+          <span>Rishihood University · October 2026 — LXOS and The Product Guys were introduced to students, with a QR code on screen to try it.</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- TEARDOWNS (interactive) -->
+    <section class="tear" id="teardowns">
+      <div class="section-head">
+        <h2 class="big-title split">Teardowns</h2>
+        <p class="eyebrow center">15+ teardowns and counting — tap one to see the lens I use.</p>
+      </div>
+      <div class="tear__wrap">
+        <div class="tear__tabs" role="tablist">
+          <button role="tab" class="is-on" data-brand="zepto">Zepto</button>
+          <button role="tab" data-brand="blinkit">Blinkit</button>
+          <button role="tab" data-brand="uc">Urban Company</button>
+          <button role="tab" data-brand="toing">Toing</button>
+        </div>
+        <div class="tear__stage">
+          <div class="tear__phone phone" id="tearPhone">
+            <div class="phone__notch"></div>
+            <div class="phone__screen tear__screen">
+              <div class="tear__brand" id="tearBrand">Zepto</div>
+              <div class="tear__sk"><i></i><i></i><i></i></div>
+              <div class="tear__cards"><i></i><i></i><i></i><i></i></div>
+              <div class="tear__bar"></div>
+            </div>
+          </div>
+          <ol class="tear__lens">
+            <li><span>01</span><div><b>User journey</b><p>Walk every step from first open to repeat use — where it delights, where it leaks.</p></div></li>
+            <li><span>02</span><div><b>Competitive positioning</b><p>Benchmark against the closest rivals on value, speed, trust and price.</p></div></li>
+            <li><span>03</span><div><b>Opportunities</b><p>Turn friction into prioritised, testable recommendations.</p></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLKIT -->
+    <section class="kit" id="toolkit">
+      <div class="section-head">
+        <h2 class="big-title split">Toolkit</h2>
+        <p class="eyebrow center">Hover the frameworks — they think out loud.</p>
+      </div>
+      <div class="kit__grid">
+        <div class="fw" data-tilt>
+          <svg viewBox="0 0 200 130" class="fw__svg tree" aria-hidden="true">
+            <path d="M20 65 H60 M60 65 V30 H100 M60 65 V100 H100 M100 30 H120 M120 30 V15 H160 M120 30 V45 H160 M100 100 H120 M120 100 V85 H160 M120 100 V115 H160"/>
+            <circle cx="20" cy="65" r="6"/><circle cx="100" cy="30" r="4"/><circle cx="100" cy="100" r="4"/>
+            <circle cx="160" cy="15" r="3"/><circle cx="160" cy="45" r="3"/><circle cx="160" cy="85" r="3"/><circle cx="160" cy="115" r="3"/>
+          </svg>
+          <b>Issue Trees</b><span>Break any problem into MECE branches.</span>
+        </div>
+        <div class="fw" data-tilt>
+          <svg viewBox="0 0 200 130" class="fw__svg tam" aria-hidden="true">
+            <circle cx="100" cy="65" r="58"/><circle cx="100" cy="78" r="40"/><circle cx="100" cy="92" r="22"/>
+          </svg>
+          <b>TAM / SAM / SOM</b><span>Size the prize before building.</span>
+        </div>
+        <div class="fw" data-tilt>
+          <svg viewBox="0 0 200 130" class="fw__svg seg" aria-hidden="true"></svg>
+          <b>Segmentation</b><span>Find who hurts most — and why.</span>
+        </div>
+        <div class="fw" data-tilt>
+          <svg viewBox="0 0 200 130" class="fw__svg jtbd" aria-hidden="true">
+            <rect x="20" y="40" width="44" height="50" rx="8"/><rect x="78" y="40" width="44" height="50" rx="8"/><rect x="136" y="40" width="44" height="50" rx="8"/>
+            <path d="M64 65 H78 M122 65 H136"/>
+            <text x="42" y="69">When</text><text x="100" y="69">I want</text><text x="158" y="69">So I</text>
+          </svg>
+          <b>Jobs-to-be-Done</b><span>Users hire products to make progress.</span>
+        </div>
+      </div>
+
+      <div class="marquee" aria-label="Skills and tools">
+        <div class="marquee__track" id="marquee">
+          <span><img src="https://cdn.simpleicons.org/figma/ffffff" alt="" loading="lazy" />Figma</span>
+          <span><img src="https://cdn.simpleicons.org/notion/ffffff" alt="" loading="lazy" />Notion</span>
+          <span><img src="https://cdn.simpleicons.org/git/ffffff" alt="" loading="lazy" />Git</span>
+          <span><img src="https://cdn.simpleicons.org/react/ffffff" alt="" loading="lazy" />React</span>
+          <span><img src="https://cdn.simpleicons.org/javascript/ffffff" alt="" loading="lazy" />JavaScript</span>
+          <span><img src="https://cdn.simpleicons.org/python/ffffff" alt="" loading="lazy" />Python</span>
+          <span><img src="https://cdn.simpleicons.org/openjdk/ffffff" alt="" loading="lazy" />Java</span>
+          <span><img src="https://cdn.simpleicons.org/html5/ffffff" alt="" loading="lazy" />HTML</span>
+          <span><img src="https://cdn.simpleicons.org/css/ffffff" alt="" loading="lazy" />CSS</span>
+          <span><img src="https://cdn.simpleicons.org/mysql/ffffff" alt="" loading="lazy" />SQL</span>
+          <span><img src="https://cdn.simpleicons.org/google/ffffff" alt="" loading="lazy" />Google Workspace</span>
+          <span>Excel</span>
+          <span>PowerPoint</span>
+        </div>
+      </div>
+
+      <div class="skills">
+        <div class="skills__group"><small>Product</small><p><span>Product Strategy</span><span>Customer Discovery</span><span>User Research</span><span>Market Research</span><span>Competitive Analysis</span><span>Feature Prioritisation</span><span>GTM Strategy</span></p></div>
+        <div class="skills__group"><small>Frameworks</small><p><span>Issue Trees</span><span>TAM/SAM/SOM</span><span>Customer Segmentation</span><span>Jobs-to-be-Done</span><span>Systems Thinking</span></p></div>
+        <div class="skills__group"><small>Soft skills</small><p><span>Stakeholder Communication</span><span>Cross-functional Collaboration</span><span>Strategic Thinking</span><span>Agile / Scrum</span></p></div>
+      </div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section class="journey" id="journey">
+      <div class="section-head left">
+        <p class="eyebrow ember">Journey</p>
+        <h2 class="mid-title split">Where I've Been</h2>
+        <p class="muted">Classrooms, clubs, stalls and stages — each one a product lesson.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline__line"><i id="tlFill"></i></div>
+
+        <div class="tl">
+          <div class="tl__when"><span class="mono">Feb 2026 — Present</span><b class="mono ember">Arthakram · Sonipat</b></div>
+          <div class="tl__what">
+            <h3>Associate Consultant</h3>
+            <p>Product &amp; Consulting Club — teardowns, market research and growth strategy.</p>
+            <ul><li>15+ product teardowns, incl. Toing, Urban Company, Zepto &amp; Blinkit</li><li>Competitor benchmarking → actionable recommendations</li><li>Issue trees, TAM/SAM/SOM, customer segmentation</li><li>Built <a class="inline-link" href="https://productguys.arthakram.in/" target="_blank" rel="noopener">The Product Guys ↗</a> — daily PM lessons &amp; duels for members</li></ul>
+          </div>
+        </div>
+
+        <div class="tl">
+          <div class="tl__when"><span class="mono">Aug 2025 — 2029</span><b class="mono ember">Newton School of Technology</b></div>
+          <div class="tl__what">
+            <h3>B.Tech, Computer Science &amp; AI</h3>
+            <p>Sonipat, Delhi NCR — building the technical depth behind product decisions.</p>
+            <ul><li>Java · JavaScript · React · Python · SQL</li><li>Shipped WynIt, The Product Guys, Thrifto &amp; Vyapar as product builds</li></ul>
+          </div>
+        </div>
+
+        <div class="tl">
+          <div class="tl__when"><span class="mono">School</span><b class="mono ember">DPS Ghaziabad</b></div>
+          <div class="tl__what">
+            <h3>IT President</h3>
+            <p>Led the school IT team and spearheaded a school-level IT fest.</p>
+            <ul><li>End-to-end event operations</li><li>Technical infrastructure &amp; cross-team coordination</li></ul>
+          </div>
+        </div>
+
+        <div class="tl">
+          <div class="tl__when"><span class="mono">School</span><b class="mono ember">DPS Ghaziabad</b></div>
+          <div class="tl__what">
+            <h3>MUN Organiser</h3>
+            <p>Hosted 3 MUNs with 350+ participants.</p>
+            <ul><li>Event strategy &amp; delegate management</li><li>Sponsorship acquisition — ₹25,000+ revenue</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="certs">
+        <p class="eyebrow">Certifications &amp; competitions</p>
+        <div class="certs__row">
+          <div class="cert"><i>◆</i><b>BCG</b><span>Strategy Course</span></div>
+          <div class="cert"><i>◆</i><b>IIT Guwahati</b><span>Micro Course Program</span></div>
+          <div class="cert"><i>◆</i><b>IIT Delhi</b><span>Summer Boot Camp · Robotics</span></div>
+          <div class="cert"><i>◆</i><b>Visual Vertex</b><span>Hackathon</span></div>
+          <div class="cert"><i>◆</i><b>BITS Pilani</b><span>Case Competition Hackathon</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="section-head">
+        <p class="eyebrow ember center">Get in touch</p>
+        <h2 class="mid-title split center">Let's Build Something People Love</h2>
+        <p class="muted center">Hiring for a PM internship, need a teardown, or want to jam on an idea? Drop a line.</p>
+      </div>
+
+      <div class="contact__grid">
+        <div class="panel">
+          <h3>Contact Details</h3>
+          <a class="row" href="mailto:vedaantchopra01@gmail.com"><i>✉</i><div><small>Email</small><span>vedaantchopra01@gmail.com</span></div></a>
+          <a class="row" href="tel:+918178254059"><i>☏</i><div><small>Phone</small><span>+91 81782 54059</span></div></a>
+          <div class="row"><i>⌖</i><div><small>Location</small><span>Sonipat · Delhi NCR, India</span></div></div>
+          <div class="row"><i class="live"></i><div><small>Availability</small><span class="green">Open to PM internships</span></div></div>
+          <div class="panel__sep"></div>
+          <small class="eyebrow">Connect</small>
+          <div class="socials">
+            <a href="https://www.linkedin.com/in/vedaant-chopra-217815272" target="_blank" rel="noopener" aria-label="LinkedIn" data-magnetic>
+              <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+            <a href="mailto:vedaantchopra01@gmail.com" aria-label="Email" data-magnetic>
+              <svg viewBox="0 0 24 24"><path d="M2 5h20v14H2z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m2 6 10 7 10-7" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+            <a href="https://wa.me/918178254059" target="_blank" rel="noopener" aria-label="WhatsApp" data-magnetic>
+              <svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88a9.88 9.88 0 0 1 9.88 9.89c0 5.45-4.43 9.88-9.88 9.88zm8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.94L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.16-3.49-8.41z"/></svg>
+            </a>
+            <a href="assets/Vedaant_Chopra_Resume.pdf" target="_blank" rel="noopener" aria-label="Resume (PDF)" data-magnetic>
+              <svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M14 2v6h6M9 13h8M9 17h8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </div>
+          <a class="btn btn--ghost btn--block" href="assets/Vedaant_Chopra_Resume.pdf" download data-magnetic>↓ Download Resume</a>
+        </div>
+
+        <form class="panel form" id="contactForm" novalidate>
+          <label>Name<input name="name" required placeholder="Your name" autocomplete="name" /></label>
+          <label>Email<input name="email" type="email" required placeholder="you@company.com" autocomplete="email" /></label>
+          <label>Message<textarea name="message" required rows="6" placeholder="Tell me about the role or idea…"></textarea></label>
+          <button class="btn btn--ember btn--block" type="submit">Send Message ➤</button>
+          <p class="form__note" id="formNote">Opens your email app with the message ready to send.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>© 2026 Vedaant Chopra. Designed with intent.</span>
+    <a href="#top" class="totop">Back to top <i>↑</i></a>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/main.js?v=6"></script>
+</body>
+</html>
