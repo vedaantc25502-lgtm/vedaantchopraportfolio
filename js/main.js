@@ -398,7 +398,7 @@
   }), { threshold: 0.6 });
   $$(".fw").forEach((el) => fwIo.observe(el));
 
-  /* ---------------- contact form -> mail ---------------- */
+  /* ---------------- contact form -> WhatsApp ---------------- */
   $("#contactForm").addEventListener("submit", (e) => {
     e.preventDefault();
     const f = e.currentTarget, note = $("#formNote");
@@ -410,10 +410,10 @@
       if (!valid) ok = false;
     });
     if (!ok) { note.textContent = "Please fill in all fields with a valid email."; note.style.color = "var(--ember-bright)"; return; }
-    const subject = `Portfolio enquiry from ${f.elements.name.value.trim()}`;
-    const body = `${f.elements.message.value.trim()}\n\n— ${f.elements.name.value.trim()} (${f.elements.email.value.trim()})`;
-    window.location.href = `mailto:vedaantchopra01@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    note.textContent = "Your email app should open now — hit send there. ✓";
+    const text = `Hi Vedaant, I'm ${f.elements.name.value.trim()} (${f.elements.email.value.trim()}).\n\n${f.elements.message.value.trim()}\n\n— sent from vedaantchopra.me`;
+    const url = `https://wa.me/918178254059?text=${encodeURIComponent(text)}`;
+    if (!window.open(url, "_blank", "noopener")) window.location.href = url;
+    note.textContent = "WhatsApp should open with your message ready — just hit send. ✓";
     note.style.color = "var(--green)";
   });
 
