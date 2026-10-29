@@ -413,7 +413,6 @@
     scrollTrigger: { trigger: "#philoText", start: "top 85%", end: "bottom 50%", scrub: 0.6 },
   });
   gsap.from(".principles div, .philo__screen", { opacity: 0, y: 40, duration: 1.1, stagger: 0.08, ease: "expo.out", scrollTrigger: { trigger: ".philo__grid", start: "top 80%" } });
-  gsap.from(".brief", { opacity: 0, y: 40, duration: 1.1, stagger: 0.08, ease: "expo.out", clearProps: "transform,translate", scrollTrigger: { trigger: ".brief__grid", start: "top 88%" } });
 
   // split titles
   $$(".split").forEach((el) => {
