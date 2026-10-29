@@ -130,21 +130,6 @@
     $(".hero").addEventListener("pointerleave", () => { rx(0); ry(0); });
   }
 
-  /* ---------------- philosophy: split into words ---------------- */
-  const philoWords = (() => {
-    const el = $("#philoText"), out = [];
-    const wrap = (text, hl) => text.split(/(\s+)/).map((t) => {
-      if (!t.trim()) return document.createTextNode(t);
-      const w = document.createElement("span");
-      w.className = hl ? "w hl" : "w"; w.textContent = t; out.push(w); return w;
-    });
-    [...el.childNodes].forEach((n) => {
-      const parts = wrap(n.textContent, n.nodeType === 1 && n.classList.contains("hl"));
-      n.replaceWith(...parts);
-    });
-    return out;
-  })();
-
   /* ---------------- split titles ---------------- */
   $$(".split").forEach((el) => {
     const words = el.textContent.trim().split(/\s+/);
@@ -271,59 +256,6 @@
     });
   }
 
-  /* ---------------- philosophy bridge canvas ---------------- */
-  const bridge = (() => {
-    const c = $("#bridge"), ctx = c.getContext("2d");
-    const dpr = Math.min(devicePixelRatio || 1, 2);
-    let w, h, visible = false, t = 0;
-    const parts = Array.from({ length: 90 }, () => ({ p: Math.random(), s: 0.002 + Math.random() * 0.004, o: (Math.random() - 0.5) * 2 }));
-    const resize = () => { w = c.width = c.clientWidth * dpr; h = c.height = c.clientHeight * dpr; };
-    const orb = (x, y, r, a) => {
-      const g = ctx.createRadialGradient(x, y, 0, x, y, r);
-      g.addColorStop(0, `rgba(255, 170, 150, ${a})`);
-      g.addColorStop(0.25, `rgba(216, 72, 58, ${a * 0.8})`);
-      g.addColorStop(1, "rgba(216, 72, 58, 0)");
-      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
-    };
-    const draw = () => {
-      if (!visible) return;
-      t += 0.016;
-      if (c.clientWidth * dpr !== w || c.clientHeight * dpr !== h) resize();
-      ctx.clearRect(0, 0, w, h);
-      const ax = w * 0.14, bx = w * 0.86, y = h * 0.4, s = Math.min(w, h);
-      const lift = h * 0.18;
-      const pt = (p, off) => {
-        const x = ax + (bx - ax) * p;
-        const yy = y - Math.sin(p * Math.PI) * lift + off * Math.sin(p * Math.PI) * s * 0.05;
-        return [x, yy];
-      };
-      ctx.strokeStyle = "rgba(216,72,58,0.18)"; ctx.lineWidth = 1 * dpr;
-      for (let k = -1; k <= 1; k++) {
-        ctx.beginPath();
-        for (let p = 0; p <= 1.001; p += 0.02) { const [x, yy] = pt(p, k * 0.8); p === 0 ? ctx.moveTo(x, yy) : ctx.lineTo(x, yy); }
-        ctx.stroke();
-      }
-      for (const q of parts) {
-        q.p += q.s; if (q.p > 1) q.p = 0;
-        const [x, yy] = pt(q.p, q.o + Math.sin(t * 2 + q.p * 8) * 0.2);
-        ctx.globalAlpha = Math.sin(q.p * Math.PI);
-        ctx.fillStyle = "#ffb4a6";
-        ctx.beginPath(); ctx.arc(x, yy, 1.6 * dpr, 0, Math.PI * 2); ctx.fill();
-      }
-      ctx.globalAlpha = 1;
-      const pulse = 1 + Math.sin(t * 2) * 0.06;
-      orb(ax, y, s * 0.14 * pulse, 0.8);
-      orb(bx, y, s * 0.14 * (2 - pulse), 0.8);
-      const [mx, my] = pt(0.5, 0);
-      orb(mx, my, s * 0.07 * (1 + Math.sin(t * 5) * 0.2), 0.9);
-      requestAnimationFrame(draw);
-    };
-    new IntersectionObserver(([e]) => {
-      const was = visible; visible = e.isIntersecting;
-      if (visible && !was) { resize(); requestAnimationFrame(draw); }
-    }).observe(c);
-  })();
-
   /* ---------------- breakdown filters ---------------- */
   $$(".bds__filters button").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -402,17 +334,9 @@
   /* ---------------- scroll animations ---------------- */
   if (!hasGsap || reduce) {
     $$("[data-count]").forEach((el) => (el.textContent = (el.dataset.prefix || "") + Number(el.dataset.count).toLocaleString("en-IN") + (el.dataset.suffix || "")));
-    philoWords.forEach((w) => (w.style.opacity = 1));
     $$(".tl").forEach((t) => t.classList.add("on"));
     return;
   }
-
-  // philosophy: words light up as the paragraph scrolls by (no pinning, nothing to wait for)
-  gsap.to(philoWords, {
-    opacity: 1, stagger: 0.12, ease: "none",
-    scrollTrigger: { trigger: "#philoText", start: "top 85%", end: "bottom 50%", scrub: 0.6 },
-  });
-  gsap.from(".principles div, .philo__screen", { opacity: 0, y: 40, duration: 1.1, stagger: 0.08, ease: "expo.out", scrollTrigger: { trigger: ".philo__grid", start: "top 80%" } });
 
   // split titles
   $$(".split").forEach((el) => {
@@ -446,7 +370,6 @@
   gsap.from(".bds__bar", { opacity: 0, y: 20, duration: 0.9, ease: "expo.out", scrollTrigger: { trigger: ".bds__bar", start: "top 90%" } });
   gsap.from(".bd", { opacity: 0, y: 60, stagger: 0.07, duration: 1.1, ease: "expo.out", clearProps: "transform,translate", scrollTrigger: { trigger: ".bds__grid", start: "top 85%" } });
   gsap.from(".fw", { opacity: 0, y: 60, stagger: 0.1, duration: 1.1, ease: "expo.out", clearProps: "transform,translate,rotate,scale", scrollTrigger: { trigger: ".kit__grid", start: "top 85%" } });
-  gsap.from(".skills__group", { opacity: 0, y: 40, stagger: 0.12, duration: 1, ease: "expo.out", scrollTrigger: { trigger: ".skills", start: "top 88%" } });
   gsap.from(".cert", { opacity: 0, y: 40, stagger: 0.08, duration: 1, ease: "expo.out", clearProps: "transform,translate,rotate,scale", scrollTrigger: { trigger: ".certs", start: "top 88%" } });
 
   // timeline line + items
