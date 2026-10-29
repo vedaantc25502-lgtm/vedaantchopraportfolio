@@ -298,14 +298,6 @@
     if (!finePointer) new IntersectionObserver(([e]) => cluster(e.isIntersecting), { threshold: 0.6 }).observe(host);
   })();
 
-  /* ---------------- marquee loop ---------------- */
-  (() => {
-    const track = $("#marquee");
-    $$("img", track).forEach((img) => img.addEventListener("error", () => img.remove()));
-    track.innerHTML += track.innerHTML;
-    $$("img", track).forEach((img) => img.addEventListener("error", () => img.remove()));
-  })();
-
   /* ---------------- touch: auto-play hover visuals ---------------- */
   const fwIo = new IntersectionObserver((es) => es.forEach((e) => {
     if (e.isIntersecting) { e.target.classList.add("in"); fwIo.unobserve(e.target); }
@@ -324,10 +316,10 @@
       if (!valid) ok = false;
     });
     if (!ok) { note.textContent = "Please fill in all fields with a valid email."; note.style.color = "var(--ember-bright)"; return; }
-    const text = `Hi Vedaant, I'm ${f.elements.name.value.trim()} (${f.elements.email.value.trim()}).\n\n${f.elements.message.value.trim()}\n\n— sent from vedaantchopra.me`;
+    const text = `Hi Vedaant, I'm ${f.elements.name.value.trim()} (${f.elements.email.value.trim()}).\n\n${f.elements.message.value.trim()}\n\nSent from vedaantchopra.me`;
     const url = `https://wa.me/918178254059?text=${encodeURIComponent(text)}`;
     if (!window.open(url, "_blank", "noopener")) window.location.href = url;
-    note.textContent = "WhatsApp should open with your message ready — just hit send. ✓";
+    note.textContent = "WhatsApp should open with your message ready. Just hit send. ✓";
     note.style.color = "var(--green)";
   });
 
@@ -370,6 +362,7 @@
   gsap.from(".bds__bar", { opacity: 0, y: 20, duration: 0.9, ease: "expo.out", scrollTrigger: { trigger: ".bds__bar", start: "top 90%" } });
   gsap.from(".bd", { opacity: 0, y: 60, stagger: 0.07, duration: 1.1, ease: "expo.out", clearProps: "transform,translate", scrollTrigger: { trigger: ".bds__grid", start: "top 85%" } });
   gsap.from(".fw", { opacity: 0, y: 60, stagger: 0.1, duration: 1.1, ease: "expo.out", clearProps: "transform,translate,rotate,scale", scrollTrigger: { trigger: ".kit__grid", start: "top 85%" } });
+  gsap.from(".bucket", { opacity: 0, y: 40, stagger: 0.1, duration: 1, ease: "expo.out", clearProps: "transform", scrollTrigger: { trigger: ".buckets", start: "top 88%" } });
   gsap.from(".cert", { opacity: 0, y: 40, stagger: 0.08, duration: 1, ease: "expo.out", clearProps: "transform,translate,rotate,scale", scrollTrigger: { trigger: ".certs", start: "top 88%" } });
 
   // timeline line + items
