@@ -323,39 +323,20 @@
     }).observe(c);
   })();
 
-  /* ---------------- teardown tabs ---------------- */
-  const brands = {
-    zepto: { name: "Zepto", b: "#7b2cf5", t: "#ffffff" },
-    blinkit: { name: "blinkit", b: "#f8cb46", t: "#1a1a1a" },
-    uc: { name: "Urban Company", b: "#f2f2f2", t: "#111111" },
-    toing: { name: "Toing", b: "#d8483a", t: "#ffffff" },
-    more: { name: "15+ more", b: "#3b3b41", t: "#ffffff" },
-  };
-  const phone = $("#tearPhone"), brandEl = $("#tearBrand");
-  const setBrand = (key, animate) => {
-    const br = brands[key];
-    const apply = () => {
-      phone.style.setProperty("--b", br.b); phone.style.setProperty("--t", br.t);
-      brandEl.textContent = br.name;
-    };
-    if (animate && hasGsap && !reduce) {
-      gsap.timeline()
-        .to(phone, { rotateY: 90, duration: 0.3, ease: "power2.in", onComplete: apply })
-        .to(phone, { rotateY: 0, duration: 0.6, ease: "back.out(1.6)" });
-      gsap.fromTo(".tear__lens li", { opacity: 0.3, x: 16 }, { opacity: 1, x: 0, stagger: 0.08, duration: 0.6, ease: "expo.out", clearProps: "transform,translate,rotate,scale" });
-    } else apply();
-  };
-  $$(".tear__tabs button").forEach((btn) => {
-    const br = brands[btn.dataset.brand];
-    btn.style.setProperty("--b", br.b); btn.style.setProperty("--t", br.t);
+  /* ---------------- breakdown filters ---------------- */
+  $$(".bds__filters button").forEach((btn) => {
     btn.addEventListener("click", () => {
       if (btn.classList.contains("is-on")) return;
-      $$(".tear__tabs button").forEach((b) => { b.classList.remove("is-on"); b.setAttribute("aria-selected", "false"); });
-      btn.classList.add("is-on"); btn.setAttribute("aria-selected", "true");
-      setBrand(btn.dataset.brand, true);
+      $$(".bds__filters button").forEach((b) => b.classList.toggle("is-on", b === btn));
+      const f = btn.dataset.filter;
+      const cards = $$(".bd");
+      cards.forEach((c) => c.classList.toggle("is-hidden", f !== "all" && c.dataset.cat !== f && c.dataset.cat !== "all"));
+      if (hasGsap && !reduce) {
+        gsap.fromTo(cards.filter((c) => !c.classList.contains("is-hidden")), { opacity: 0, y: 24, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.05, ease: "expo.out", clearProps: "transform,translate,scale" });
+      }
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
     });
   });
-  setBrand("zepto", false);
 
   /* ---------------- segmentation dots ---------------- */
   (() => {
@@ -462,9 +443,8 @@
   });
 
   // teardown / toolkit / certs
-  gsap.from(".tear__tabs button", { opacity: 0, y: 20, stagger: 0.06, duration: 0.8, ease: "expo.out", clearProps: "transform,translate,rotate,scale", scrollTrigger: { trigger: ".tear__tabs", start: "top 88%" } });
-  gsap.from("#tearPhone", { opacity: 0, y: 80, rotate: -6, duration: 1.4, ease: "expo.out", scrollTrigger: { trigger: ".tear__stage", start: "top 80%" } });
-  gsap.from(".tear__lens li", { opacity: 0, x: 60, stagger: 0.12, duration: 1.1, ease: "expo.out", clearProps: "transform,translate,rotate,scale", scrollTrigger: { trigger: ".tear__lens", start: "top 85%" } });
+  gsap.from(".bds__bar", { opacity: 0, y: 20, duration: 0.9, ease: "expo.out", scrollTrigger: { trigger: ".bds__bar", start: "top 90%" } });
+  gsap.from(".bd", { opacity: 0, y: 60, stagger: 0.07, duration: 1.1, ease: "expo.out", clearProps: "transform,translate", scrollTrigger: { trigger: ".bds__grid", start: "top 85%" } });
   gsap.from(".fw", { opacity: 0, y: 60, stagger: 0.1, duration: 1.1, ease: "expo.out", clearProps: "transform,translate,rotate,scale", scrollTrigger: { trigger: ".kit__grid", start: "top 85%" } });
   gsap.from(".skills__group", { opacity: 0, y: 40, stagger: 0.12, duration: 1, ease: "expo.out", scrollTrigger: { trigger: ".skills", start: "top 88%" } });
   gsap.from(".cert", { opacity: 0, y: 40, stagger: 0.08, duration: 1, ease: "expo.out", clearProps: "transform,translate,rotate,scale", scrollTrigger: { trigger: ".certs", start: "top 88%" } });
