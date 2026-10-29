@@ -293,9 +293,14 @@ section { padding: 140px 6vw; position: relative; }
   .philo__grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
-  .portrait__chip { font-size: 11px; padding: 8px 10px; }
-  .portrait__chip--a { left: -12%; }
-  .portrait__chip--b { right: -10%; }
+  .hero__visual { min-width: 0; }
+  .portrait { height: auto; width: min(100%, 420px); }
+  .portrait__ring { inset: -4%; }
+  .portrait__chip { font-size: 11px; padding: 7px 10px; gap: 8px; }
+  .portrait__chip i { width: 24px; height: 24px; font-size: 12px; }
+  .portrait__chip--a { left: -8px; top: 7%; }
+  .portrait__chip--b { right: -8px; top: 44%; }
+  .portrait__chip--c { left: -8px; bottom: 6%; }
   .principles { grid-template-columns: 1fr; }
   .proof { gap: 12px; }
 }
