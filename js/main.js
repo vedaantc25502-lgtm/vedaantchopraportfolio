@@ -459,10 +459,6 @@
     gsap.fromTo($(".card__visual", card), { y: 40 }, { y: -40, ease: "none", scrollTrigger: { trigger: card, start: "top bottom", end: "bottom top", scrub: true } });
   });
 
-  // on-stage photo: slow parallax + reveal
-  gsap.fromTo(".stage__img img", { yPercent: -8 }, { yPercent: 0, ease: "none", scrollTrigger: { trigger: ".stage", start: "top bottom", end: "bottom top", scrub: true } });
-  gsap.from(".stage__fig", { clipPath: "inset(12% 8% 12% 8% round 28px)", duration: 1.4, ease: "expo.out", scrollTrigger: { trigger: ".stage", start: "top 80%" } });
-
   // teardown / toolkit / certs
   gsap.from(".tear__tabs button", { opacity: 0, y: 20, stagger: 0.06, duration: 0.8, ease: "expo.out", clearProps: "transform,translate,rotate,scale", scrollTrigger: { trigger: ".tear__tabs", start: "top 88%" } });
   gsap.from("#tearPhone", { opacity: 0, y: 80, rotate: -6, duration: 1.4, ease: "expo.out", scrollTrigger: { trigger: ".tear__stage", start: "top 80%" } });
