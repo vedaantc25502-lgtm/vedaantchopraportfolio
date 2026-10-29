@@ -188,24 +188,25 @@
   if (reduce || !hasGsap) {
     (document.fonts ? document.fonts.ready : Promise.resolve()).then(finishLoad);
   } else {
+    // progress walks the product loop: Discover → Define → Prioritise → Build → Ship
     const counter = { v: 0 };
+    const reel = $("#loaderReel"), nodes = $$(".loader__track i"), steps = $$(".loader__steps span");
+    let step = -1;
+    const render = () => {
+      $("#loaderBar").style.width = `${counter.v}%`;
+      const s = Math.min(4, Math.floor(counter.v / 25 + 0.001));
+      nodes.forEach((n, i) => n.classList.toggle("on", counter.v >= i * 25));
+      if (s !== step) {
+        step = s;
+        reel.style.transform = `translateY(${-s * 1.05}em)`;
+        steps.forEach((el, i) => el.classList.toggle("on", i <= s));
+      }
+    };
+    render();
     const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
-    const tween = gsap.to(counter, {
-      v: 90, duration: 0.9, ease: "power2.inOut",
-      onUpdate: () => {
-        $("#loaderNum").textContent = Math.round(counter.v);
-        $("#loaderBar").style.width = `${counter.v}%`;
-      },
-    });
+    const tween = gsap.to(counter, { v: 80, duration: 1.3, ease: "power1.inOut", onUpdate: render });
     Promise.all([fontsReady, new Promise((r) => tween.eventCallback("onComplete", r))]).then(() => {
-      gsap.to(counter, {
-        v: 100, duration: 0.35, ease: "power1.out",
-        onUpdate: () => {
-          $("#loaderNum").textContent = Math.round(counter.v);
-          $("#loaderBar").style.width = `${counter.v}%`;
-        },
-        onComplete: finishLoad,
-      });
+      gsap.to(counter, { v: 100, duration: 0.4, ease: "power1.out", onUpdate: render, onComplete: () => gsap.delayedCall(0.25, finishLoad) });
     });
   }
 
@@ -328,6 +329,7 @@
     blinkit: { name: "blinkit", b: "#f8cb46", t: "#1a1a1a" },
     uc: { name: "Urban Company", b: "#f2f2f2", t: "#111111" },
     toing: { name: "Toing", b: "#d8483a", t: "#ffffff" },
+    more: { name: "15+ more", b: "#3b3b41", t: "#ffffff" },
   };
   const phone = $("#tearPhone"), brandEl = $("#tearBrand");
   const setBrand = (key, animate) => {
